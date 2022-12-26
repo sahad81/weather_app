@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-
 import 'package:weather_app_based_on_city/src/const/const.dart';
 import 'package:weather_app_based_on_city/src/controlls/homecontrolls.dart';
-
 import 'package:weather_app_based_on_city/src/ui/widgets/maincard.dart';
 import 'package:weather_app_based_on_city/src/ui/widgets/nextfivedaysgrap.dart';
 import 'package:weather_app_based_on_city/src/ui/widgets/othercity.dart';
@@ -33,7 +31,7 @@ class HomePage extends StatelessWidget {
                           bottomLeft: Radius.circular(25),
                           bottomRight: Radius.circular(25))),
                   child: Stack(
-                    children: [Textfiled(),
+                    children: [const Textfiled(),
                     // ignore: unrelated_type_equality_checks
                     controller.isloadingforcurrentdata==false?
                     const Center(
@@ -69,31 +67,31 @@ class HomePage extends StatelessWidget {
                                   const Center(child: CircularProgressIndicator(),)
                                 :   Othercity(controller: controller),
                                   Padding(
-                                    padding: const EdgeInsets.only(top: 10),
-                                    child: Container(
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Text(
-                                            "Next 5 days data".toUpperCase(),
-                                            style: GoogleFonts.poppins(
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: 17,
-                                                color: black45),
-                                          ),
-                                          Icon(
-                                            Icons.next_plan_outlined,
-                                            color: black45,
-                                          )
-                                        ],
-                                      ),
+                                    padding:  EdgeInsets.only(top: 10),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text(
+                                          "Next 5 days data".toUpperCase(),
+                                          style: GoogleFonts.poppins(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 17,
+                                              color: black45),
+                                        ),
+                                        Icon(
+                                          Icons.next_plan_outlined,
+                                          color: black45,
+                                        )
+                                      ],
                                     ),
                                   ),
-                                  Nextfivedayasgraph(
-                                    controller: controller,
-                                  )
-                                ]),
+                                  
+                                controller.isloadingmaiicitydata==false?
+                                  const Center(child: CircularProgressIndicator(),)
+                                :   Nextfivedayasgraph(controller: controller),
+                                ]
+                                ),
                           )),
                     ),
                   ],

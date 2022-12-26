@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:dio/dio.dart';
 
 class Apirepository{
@@ -18,13 +20,14 @@ Function (dynamic error)? oneror,
   _dio.get(url,queryParameters: payload).then((response) {
 if(onsuccess !=null){
   onsuccess(response.data);
-  print("apical set");
+
 }
 
+  // ignore: avoid_types_as_parameter_names, non_constant_identifier_names
   }).catchError((Error){
     if(oneror !=null){
       oneror(Error);
-print("error in reposetory");
+log("error in reposetory");
     }
   });
   }

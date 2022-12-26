@@ -31,7 +31,7 @@ CurrentWatherData currentWatherData=CurrentWatherData();
 void updateweather()
 {
   isloadingforcurrentdata.value=false;
-  
+  getFivedaysDatas();
   onInit();
 }
 
@@ -60,7 +60,7 @@ List<String> cities=[
   "manjeri",
   "chennai",
   ];
-  cities.forEach((element) {
+  for (var element in cities) {
 
     Weatherservieces(city: element).getcurrentwatherdata(onsuccess: (data) {
       datalist.add(data);
@@ -70,19 +70,22 @@ List<String> cities=[
     } ,
     oneror: (error) {
      
-      // Get.snackbar("error", "please try again later...");
+      Get.snackbar("error", "sothing wrong!");
       update();
       
     },
     );
-  });
+  }
 
 }
   void getFivedaysDatas() {
+    
     Weatherservieces(city: '$city').getfivedaysdata(
         onsuccess: (data) {
           list5days = data;
           update();
+          isloading5daysdata.value=true;
+
         }, oneror: (error) {
    Get.snackbar("error", "please try again later...");
       update();

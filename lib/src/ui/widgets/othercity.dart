@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
+
 import 'package:google_fonts/google_fonts.dart';
 import 'package:weather_app_based_on_city/src/const/const.dart';
 import 'package:weather_app_based_on_city/src/controlls/homecontrolls.dart';
 import 'package:weather_app_based_on_city/src/model/currentweather.dart';
 
+// ignore: must_be_immutable
 class Othercity extends StatelessWidget {
    Othercity({super.key,required this.controller});
 
@@ -13,7 +13,7 @@ Maincontrolls controller;
   @override
   Widget build(BuildContext context) {
     return 
-        Container(
+        SizedBox(
                                     height: 150,
                                     child: ListView.separated(
                                         physics: const BouncingScrollPhysics(),
@@ -24,7 +24,7 @@ Maincontrolls controller;
                                               ? data =
                                                   controller.datalist[index]
                                               : null;
-                                          return Container(
+                                          return SizedBox(
                                               width: 140,
                                               height: 150,
                                               child: Card(
@@ -32,6 +32,7 @@ Maincontrolls controller;
                                                     borderRadius:
                                                         BorderRadius.circular(
                                                             15)),
+                                                // ignore: avoid_unnecessary_containers
                                                 child: Container(
                                                   child: Column(
                                                     mainAxisAlignment:
@@ -39,15 +40,16 @@ Maincontrolls controller;
                                                             .center,
                                                     children: [
                                                       Text(
-                                                        (data != null)
-                                                            ? "${data.name}"
-                                                            : "",
+                                                     
+                                                             "${data!.name}"
+                                                        ,
                                                         style:
                                                             GoogleFonts.poppins(
                                                                 fontSize: 18,
                                                                 color: black45),
                                                       ),
                                                       Text(
+                                                        // ignore: unnecessary_null_comparison
                                                         (data != null)
                                                             ? "${(data.main!.temp! - 273.15).round().toString()}\u2103"
                                                             : "",
@@ -69,18 +71,15 @@ Maincontrolls controller;
                                                                 fit: BoxFit
                                                                     .cover)),
                                                       ),
-                                                      Container(
-                                                        child: Text(
-                                                          (data != null)
-                                                              ? "${(data.weather![0].description)}"
-                                                              : "",
-                                                          style: GoogleFonts
-                                                              .poppins(
-                                                                  fontSize: 12,
-                                                                
-                                                                  color:
-                                                                      black45),
-                                                        ),
+                                                      Text(
+                                                        "${(data.weather![0].description)}",
+                                                        
+                                                        style: GoogleFonts
+                                                            .poppins(
+                                                                fontSize: 12,
+                                                              
+                                                                color:
+                                                                    black45),
                                                       )
                                                     ],
                                                   ),
