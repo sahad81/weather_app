@@ -1,25 +1,30 @@
+
+
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
+import 'package:get/get.dart';
+import 'package:weather_app_based_on_city/src/controlls/homecontrolls.dart';
+
 
 class Textfiled extends StatelessWidget {
-   Textfiled({super.key, required this.city,required this.fn});
- String city;
- Function fn;
+ 
+
   @override
   Widget build(BuildContext context) {
+    final controleyr =Get.put(Maincontrolls());
     return   Container(
                         padding: const EdgeInsets.only(
                             top: 100, left: 20, right: 20),
                         child: TextField(
                           onChanged: (value) {
-                            city=value;
+                            controleyr.city=value;
+                            
                           },
                           style: const TextStyle(color: Colors.white),
                           textInputAction: TextInputAction.search,
                           onSubmitted: (value) {
-                            fn;
+                            
+                           controleyr.updateweather();
+                          
                           },
                           decoration: InputDecoration(
                               suffixIcon: const Icon(Icons.search),

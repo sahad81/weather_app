@@ -7,9 +7,16 @@ import 'package:weather_app_based_on_city/src/model/fivedaysdata.dart';
 
 class Maincontrolls extends GetxController{
 
-String city;
+String? city;
 String? textfiled;
-Maincontrolls({required this.city,});
+
+Maincontrolls({ this.city,});
+
+RxBool isloadingforcurrentdata=false.obs;
+RxBool isloadingmaiicitydata=false.obs;
+RxBool isloading5daysdata=false.obs;
+
+
 List<CurrentWatherData> datalist=[];
 CurrentWatherData currentWatherData=CurrentWatherData();
  List <FiveDaysss> list5days=[];
@@ -23,6 +30,8 @@ CurrentWatherData currentWatherData=CurrentWatherData();
   }
 void updateweather()
 {
+  isloadingforcurrentdata.value=false;
+  
   onInit();
 }
 
@@ -31,9 +40,11 @@ void updateweather()
 
 currentWatherData=data;
 update();
+isloadingforcurrentdata.value=true;
     },
     oneror: (error) =>{
       log("error"),
+     Get.snackbar("error", "please try again later..."),
       update()
     }
   
@@ -44,8 +55,8 @@ List<String> cities=[
 
   "delhi",
   "america",
-  "Nepal"
-  "Kolkata ",
+ 
+ 
   "manjeri",
   "chennai",
   ];
@@ -54,10 +65,12 @@ List<String> cities=[
     Weatherservieces(city: element).getcurrentwatherdata(onsuccess: (data) {
       datalist.add(data);
       update();
+      isloadingmaiicitydata.value=true;
 
     } ,
     oneror: (error) {
-      print("eroor");
+     
+      // Get.snackbar("error", "please try again later...");
       update();
       
     },
@@ -71,9 +84,10 @@ List<String> cities=[
           list5days = data;
           update();
         }, oneror: (error) {
-      print(error);
+   Get.snackbar("error", "please try again later...");
       update();
     });
+    
   }
 
 }

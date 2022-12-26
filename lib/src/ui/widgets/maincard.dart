@@ -103,7 +103,7 @@ class Maincard extends StatelessWidget {
                                                           GoogleFonts.poppins(
                                                               fontSize: 22,
                                                               color: black45,
-                                                              letterSpacing: 3,
+                                                            
                                                               fontWeight:
                                                                   FontWeight
                                                                       .w400),
