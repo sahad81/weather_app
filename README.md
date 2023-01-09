@@ -1,4 +1,4 @@
-# weather_app_based_on_city
+# weather_app_
 
 A new Flutter project.
 
